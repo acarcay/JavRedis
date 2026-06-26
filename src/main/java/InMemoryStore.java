@@ -1,129 +1,196 @@
-import java.util.concurrent.ConcurrentHashMap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.HashMap;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.locks.ReentrantLock;
 
+/**
+ * Thread-safe LRU (Least Recently Used) in-memory key-value store.
+ *
+ * Veri yapısı:
+ *   - HashMap    → O(1) anahtar erişimi
+ *   - Doubly-linked list → LRU sırasını tutar (head = en yeni, tail = en eski)
+ *
+ * Thread-safety:
+ *   Tüm okuma ve yazma işlemleri tek bir ReentrantLock altında gerçekleşir.
+ *   HashMap erişimleri de lock içinde yapılır; böylece check-then-act
+ *   race condition'ları tamamen ortadan kalkar.
+ */
 public class InMemoryStore {
+    private static final Logger log = LoggerFactory.getLogger(InMemoryStore.class);
 
-    // LRU için Çift Yönlü Bağlı Liste (Doubly Linked List) Düğümü
+    // -------------------------------------------------------------------------
+    // Doubly-linked list node
+    // -------------------------------------------------------------------------
     private static class Node {
         String key;
         String value;
-        Node prev;
-        Node next;
+        Node   prev;
+        Node   next;
 
         Node(String key, String value) {
-            this.key = key;
+            this.key   = key;
             this.value = value;
         }
     }
 
-    private final int capacity; // Depomuzun alabileceği maksimum anahtar sayısı
-    private final ConcurrentHashMap<String, Node> map; // O(1) erişim için hızlı harita
+    // -------------------------------------------------------------------------
+    // Core state  (tümü lock ile korunur)
+    // -------------------------------------------------------------------------
+    private final int              capacity;
+    private final HashMap<String, Node> map;   // ConcurrentHashMap kaldırıldı: lock yeterli
+    private final Node             head;       // dummy head (en güncel yön)
+    private final Node             tail;       // dummy tail (en eski yön)
+    private final ReentrantLock    lock = new ReentrantLock();
 
-    // Bağlı listenin başı (en güncel) ve sonu (en eski, ilk silinecek)
-    private final Node head;
-    private final Node tail;
+    // -------------------------------------------------------------------------
+    // Metrikler (AtomicLong — lock dışından da okunabilir)
+    // -------------------------------------------------------------------------
+    private final AtomicLong hitCount     = new AtomicLong();
+    private final AtomicLong missCount    = new AtomicLong();
+    private final AtomicLong evictionCount = new AtomicLong();
+    private final AtomicLong totalSets    = new AtomicLong();
+    private final AtomicLong totalDeletes = new AtomicLong();
 
-    // Liste manipülasyonlarını korumak için kilit (Lock) mekanizması
-    private final ReentrantLock lock = new ReentrantLock();
-
+    // -------------------------------------------------------------------------
+    // Constructor
+    // -------------------------------------------------------------------------
     public InMemoryStore(int capacity) {
         this.capacity = capacity;
-        this.map = new ConcurrentHashMap<>(capacity);
+        this.map      = new HashMap<>(capacity * 2);
 
-        // Dummy (Sahte) baş ve son düğümler oluşturarak edge case'leri (null kontrollerini) önlüyoruz
-        this.head = new Node(null, null);
-        this.tail = new Node(null, null);
-        head.next = tail;
-        tail.prev = head;
+        // Dummy sentinel node'lar — null kontrollerini ortadan kaldırır
+        this.head      = new Node(null, null);
+        this.tail      = new Node(null, null);
+        head.next      = tail;
+        tail.prev      = head;
     }
 
+    // -------------------------------------------------------------------------
+    // Public API
+    // -------------------------------------------------------------------------
+
     /**
-     * Veri Okuma (GET) - O(1)
+     * Veri okuma — O(1).
+     * Erişilen düğüm LRU listesinin başına (en güncel konuma) taşınır.
+     *
+     * @return değer, ya da anahtar bulunamazsa {@code null}
      */
     public String get(String key) {
-        Node node = map.get(key);
-        if (node == null) {
-            return null; // Anahtar bulunamadı
-        }
-
-        // Veriye erişildiği için onu listenin en başına (en güncel konumuna) taşımalıyız
         lock.lock();
         try {
+            Node node = map.get(key);
+            if (node == null) {
+                missCount.incrementAndGet();
+                return null;
+            }
+            hitCount.incrementAndGet();
             moveToHead(node);
+            return node.value;
         } finally {
             lock.unlock();
         }
-
-        return node.value;
     }
 
     /**
-     * Veri Yazma / Güncelleme (SET) - O(1)
+     * Veri yazma / güncelleme — O(1).
+     * Anahtar zaten varsa değeri güncellenir; yoksa yeni düğüm eklenir.
+     * Kapasite doluysa en eski düğüm (tail.prev) evict edilir.
      */
     public void set(String key, String value) {
-        Node node = map.get(key);
-
-        if (node != null) {
-            // Anahtar zaten var, değerini güncelle ve başa taşı
-            lock.lock();
-            try {
+        lock.lock();
+        try {
+            Node node = map.get(key);
+            if (node != null) {
+                // Güncelleme: değeri yaz, başa taşı
                 node.value = value;
                 moveToHead(node);
-            } finally {
-                lock.unlock();
-            }
-        } else {
-            // Yeni bir veri ekleniyor
-            Node newNode = new Node(key, value);
-
-            lock.lock();
-            try {
-                // Kapasite dolduysa en eski veriyi (tail'den bir öncekini) sil
+            } else {
+                // Yeni kayıt: önce kapasite kontrolü
                 if (map.size() >= capacity) {
                     Node lruNode = tail.prev;
                     removeNode(lruNode);
                     map.remove(lruNode.key);
-                    System.out.println("[Eviction] Kapasite doldu. En eski anahtar silindi: " + lruNode.key);
+                    evictionCount.incrementAndGet();
+                    log.debug("[Eviction] En eski anahtar silindi: {}", lruNode.key);
                 }
-
-                // Yeni düğümü listeye ekle ve haritaya koy
+                Node newNode = new Node(key, value);
                 addNode(newNode);
                 map.put(key, newNode);
-            } finally {
-                lock.unlock();
             }
+            totalSets.incrementAndGet();
+        } finally {
+            lock.unlock();
         }
     }
 
     /**
-     * Mevcut boyutu döner
+     * Anahtar silme — O(1).
+     *
+     * @return {@code true} anahtar bulunup silindiyse, {@code false} bulunamadıysa
+     */
+    public boolean delete(String key) {
+        lock.lock();
+        try {
+            Node node = map.remove(key);
+            if (node == null) return false;
+            removeNode(node);
+            totalDeletes.incrementAndGet();
+            return true;
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    /**
+     * Anlık kayıt sayısını döner.
      */
     public int size() {
-        return map.size();
+        lock.lock();
+        try {
+            return map.size();
+        } finally {
+            lock.unlock();
+        }
     }
 
-    // --- Bağlı Liste Yardımcı Metotları (Lock altında çağrılmalıdır) ---
+    /**
+     * Anlık metrik görüntüsü döner (immutable snapshot).
+     */
+    public StoreStats getStats() {
+        lock.lock();
+        try {
+            return new StoreStats(
+                    hitCount.get(), missCount.get(),
+                    evictionCount.get(), totalSets.get(),
+                    totalDeletes.get(), map.size(), capacity
+            );
+        } finally {
+            lock.unlock();
+        }
+    }
 
+    // -------------------------------------------------------------------------
+    // Doubly-linked list yardımcı metotları (lock altında çağrılmalıdır)
+    // -------------------------------------------------------------------------
+
+    /** Düğümü head'in hemen arkasına ekler (en güncel konum). */
     private void addNode(Node node) {
-        // Düğümü her zaman head'in hemen arkasına ekler (En güncel konum)
-        node.prev = head;
-        node.next = head.next;
-
-        head.next.prev = node;
-        head.next = node;
+        node.prev       = head;
+        node.next       = head.next;
+        head.next.prev  = node;
+        head.next       = node;
     }
 
+    /** Düğümü listeden koparır. */
     private void removeNode(Node node) {
-        // Düğümü listeden koparır
-        Node prevNode = node.prev;
-        Node nextNode = node.next;
-
-        prevNode.next = nextNode;
-        nextNode.prev = prevNode;
+        node.prev.next = node.next;
+        node.next.prev = node.prev;
     }
 
+    /** Düğümü mevcut yerinden söküp listenin başına taşır. */
     private void moveToHead(Node node) {
-        // Düğümü mevcut yerinden söküp başa taşır
         removeNode(node);
         addNode(node);
     }

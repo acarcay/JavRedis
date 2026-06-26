@@ -1,0 +1,122 @@
+2026-06-26 20:29:51.873 [main] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k1
+2026-06-26 20:29:51.878 [main] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k2
+2026-06-26 20:29:51.879 [main] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k2
+2026-06-26 20:29:51.880 [main] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k2
+2026-06-26 20:29:51.889 [pool-3-thread-16] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k5
+2026-06-26 20:29:51.890 [pool-3-thread-31] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k14
+2026-06-26 20:29:51.890 [pool-3-thread-32] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k10
+2026-06-26 20:29:51.890 [pool-3-thread-46] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k9
+2026-06-26 20:29:51.890 [pool-3-thread-50] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k5
+2026-06-26 20:29:51.931 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.940 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.942 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.943 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.944 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.944 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.945 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.945 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.946 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.946 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.947 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.947 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.948 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.948 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.949 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.950 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.951 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.951 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.951 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.952 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.952 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.953 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.953 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.953 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.954 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.954 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:29:51.955 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:29:51.955 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.905 [main] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k1
+2026-06-26 20:30:45.906 [main] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k2
+2026-06-26 20:30:45.907 [main] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k2
+2026-06-26 20:30:45.908 [main] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k2
+2026-06-26 20:30:45.918 [pool-3-thread-16] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k7
+2026-06-26 20:30:45.919 [pool-3-thread-17] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k6
+2026-06-26 20:30:45.919 [pool-3-thread-37] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k5
+2026-06-26 20:30:45.919 [pool-3-thread-38] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k8
+2026-06-26 20:30:45.919 [pool-3-thread-21] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k9
+2026-06-26 20:30:45.919 [pool-3-thread-25] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k10
+2026-06-26 20:30:45.920 [pool-3-thread-31] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k12
+2026-06-26 20:30:45.920 [pool-3-thread-50] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k7
+2026-06-26 20:30:45.954 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.961 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.962 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.962 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.962 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.963 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.963 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.964 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.964 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.964 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.965 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.965 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.966 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.966 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.966 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.967 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.968 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.968 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.968 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.969 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.970 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.970 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.970 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.971 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.971 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.972 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.972 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.973 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:30:45.973 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:30:45.974 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.422 [main] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k1
+2026-06-26 20:31:14.423 [main] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k2
+2026-06-26 20:31:14.424 [main] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k2
+2026-06-26 20:31:14.425 [main] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k2
+2026-06-26 20:31:14.436 [pool-3-thread-16] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k5
+2026-06-26 20:31:14.436 [pool-3-thread-17] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k6
+2026-06-26 20:31:14.436 [pool-3-thread-22] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k7
+2026-06-26 20:31:14.436 [pool-3-thread-31] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k13
+2026-06-26 20:31:14.437 [pool-3-thread-33] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k14
+2026-06-26 20:31:14.437 [pool-3-thread-30] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k11
+2026-06-26 20:31:14.437 [pool-3-thread-32] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k6
+2026-06-26 20:31:14.437 [pool-3-thread-46] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k9
+2026-06-26 20:31:14.437 [pool-3-thread-48] DEBUG InMemoryStore — [Eviction] En eski anahtar silindi: k12
+2026-06-26 20:31:14.474 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.480 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.481 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.482 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.482 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.483 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.483 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.484 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.484 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.484 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.485 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.485 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.486 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.487 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.487 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.488 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.489 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.489 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.489 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.490 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.490 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.490 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.491 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.491 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.492 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.492 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.493 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.493 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded
+2026-06-26 20:31:14.493 [main] DEBUG StoreServerHandler — Client bağlandı: embedded
+2026-06-26 20:31:14.494 [main] DEBUG StoreServerHandler — Client ayrıldı: embedded

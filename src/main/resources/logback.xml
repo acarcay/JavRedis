@@ -1,0 +1,32 @@
+<configuration>
+
+    <!-- Console — renkli, okunabilir format -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{20} — %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Dosya — JSON-style yapılandırılmış log (prod için logstash/fluentd ile okunabilir) -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/javredis.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Her gün yeni dosya, 30 gün sakla -->
+            <fileNamePattern>logs/javredis.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} — %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Netty'nin kendi verbose loglarını sustur -->
+    <logger name="io.netty" level="WARN"/>
+
+    <!-- Uygulama logları DEBUG seviyesinde -->
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
